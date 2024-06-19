@@ -145,17 +145,33 @@
                 <table id="tabel-data" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
+                            <th scope="col" class="px-6 py-3">hostname</th>
+                            <th scope="col" class="px-6 py-3">IP</th>
+                            <th scope="col" class="px-6 py-3">Ping</th>
+                            <th scope="col" class="px-6 py-3">Speed</th>
                             <th scope="col" class="px-6 py-3">Country</th>
-                            <th scope="col" class="px-6 py-3">Action</th>
-                            <th scope="col" class="px-6 py-3">Status</th>
+                            <th scope="col" class="px-6 py-3">Total User</th>
+                            <th scope="col" class="px-6 py-3">Traffic</th>
+                            <th scope="col" class="px-6 py-3">Operator</th>
+                            @if(false)
+                                <th scope="col" style="display: none;" class="px-6 py-3">Open VPN</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($vpnList as $item)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="px-6 py-4">{{ $item->CountryLong }}</td>
                                 <td class="px-6 py-4">{{ $item->hostname }}</td>
+                                <td class="px-6 py-4">{{ $item->IP }}</td>
+                                <td class="px-6 py-4">{{ $item->Ping }}</td>
                                 <td class="px-6 py-4">{{ $item->Speed }}</td>
+                                <td class="px-6 py-4">{{ $item->CountryLong }}</td>
+                                <td class="px-6 py-4">{{ $item->TotalUsers }}</td>
+                                <td class="px-6 py-4">{{ $item->TotalTraffic }}</td>
+                                <td class="px-6 py-4">{{ $item->Operator }}</td>
+                                @if(false) {{-- Ganti dengan kondisi yang Anda butuhkan --}}
+                                    <td class="px-6 py-4" style="display: none;">{{ $item->OpenVPN_ConfigData_Base64 }}</td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>
