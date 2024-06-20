@@ -177,9 +177,14 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Country</th>
-                            <th>Action</th>
-                            <th>Status</th>
+                            <th scope="col" class="px-6 py-3">hostname</th>
+                            <th scope="col" class="px-6 py-3">IP</th>
+                            <th scope="col" class="px-6 py-3">Ping</th>
+                            <th scope="col" class="px-6 py-3">Speed</th>
+                            <th scope="col" class="px-6 py-3">Country</th>
+                            <th scope="col" class="px-6 py-3">Total User</th>
+                            <th scope="col" class="px-6 py-3">Traffic</th>
+                            <th scope="col" class="px-6 py-3">Operator</th>
                         </tr>
                     </tfoot>
                 </table>
