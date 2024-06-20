@@ -12,8 +12,6 @@ class VpnController extends Controller
         $vpn = new Vpn();
         $vpnList = $vpn->getVpn();
 
-        // dd($vpnList);
-
         return view('welcome', compact('vpnList'));
     }
 }
