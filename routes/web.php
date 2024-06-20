@@ -9,10 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('vpn',[VpnController::class, 'index']);
 
-Route::resource('vpn', VpnController::class)
-    ->only('index');
+// Route::get('/', [VpnController::class,'index'])->name('/');
 
     
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::resource('/',VpnController::class);
