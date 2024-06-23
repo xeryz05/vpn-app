@@ -3,6 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.tailwindcss.css" />
+  <link rel="stylesheet" href="//cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css" />
+    {{-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> --}}
+    <link rel="stylesheet" href="https://cdn.tailwindcss.com" />
+    
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.tailwindcss.js"></script>
   @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 <body class="bg-white dark:bg-gray-900 w-full z-20 top-0 start-0 border-gray-200 dark:border-gray-600"">
@@ -71,7 +79,7 @@
         </div>
         <div class="grid grid-cols-1 gap-4 mt-40">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            {{-- <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="p-4">
@@ -89,62 +97,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <td class="w-4 p-4">
-                            1
-                        </td>
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Indo"
-                        </th>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Get Access</a>
-                        </td>
-                        <td class="px-6 py-4">
-                            Onlen
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <td class="w-4 p-4">
-                            2
-                        </td>
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Singapura"
-                        </th>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Get Access</a>
-                        </td>
-                        <td class="px-6 py-4">
-                            Onlen
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <td class="w-4 p-4">
-                            3
-                        </td>
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Amerika"
-                        </th>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Get Access</a>
-                        </td>
-                        <td class="px-6 py-4">
-                            Onlen
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <td class="w-4 p-4">
-                            4
-                        </td>
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Thailand"
-                        </th>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Get Access</a>
-                        </td>
-                        <td class="px-6 py-4">
-                            Onlen
-                        </td>
-                    </tr>
+                    @foreach ($vpnList as $item)
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td class="w-4 p-4">
+                                {{ $loop->iteration }}
+                            </td>
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{ $item->CountryLong }}
+                            </th>
+                            <td class="px-6 py-4">
+                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Get Access</a>
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $item->hostname }}
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
             <nav class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4" aria-label="Table navigation">
@@ -172,7 +140,55 @@
                 <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
                     </li>
                 </ul>
-            </nav>
+            </nav> --}}
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <table id="tabel-data" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">hostname</th>
+                            <th scope="col" class="px-6 py-3">IP</th>
+                            <th scope="col" class="px-6 py-3">Ping</th>
+                            <th scope="col" class="px-6 py-3">Speed</th>
+                            <th scope="col" class="px-6 py-3">Country</th>
+                            <th scope="col" class="px-6 py-3">Total User</th>
+                            <th scope="col" class="px-6 py-3">Traffic</th>
+                            <th scope="col" class="px-6 py-3">Operator</th>
+                            @if(false)
+                                <th scope="col" style="display: none;" class="px-6 py-3">Open VPN</th>
+                            @endif
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($vpnList as $item)
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <td class="px-6 py-4">{{ $item->hostname }}</td>
+                                <td class="px-6 py-4">{{ $item->IP }}</td>
+                                <td class="px-6 py-4">{{ $item->Ping }}</td>
+                                <td class="px-6 py-4">{{ $item->Speed }}</td>
+                                <td class="px-6 py-4">{{ $item->CountryLong }}</td>
+                                <td class="px-6 py-4">{{ $item->TotalUsers }}</td>
+                                <td class="px-6 py-4">{{ $item->TotalTraffic }}</td>
+                                <td class="px-6 py-4">{{ $item->Operator }}</td>
+                                @if(false) {{-- Ganti dengan kondisi yang Anda butuhkan --}}
+                                    <td class="px-6 py-4" style="display: none;">{{ $item->OpenVPN_ConfigData_Base64 }}</td>
+                                @endif
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th scope="col" class="px-6 py-3">hostname</th>
+                            <th scope="col" class="px-6 py-3">IP</th>
+                            <th scope="col" class="px-6 py-3">Ping</th>
+                            <th scope="col" class="px-6 py-3">Speed</th>
+                            <th scope="col" class="px-6 py-3">Country</th>
+                            <th scope="col" class="px-6 py-3">Total User</th>
+                            <th scope="col" class="px-6 py-3">Traffic</th>
+                            <th scope="col" class="px-6 py-3">Operator</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
 
         </div>
@@ -221,9 +237,13 @@
     </div>
 </footer>
 
-
-
-
+<script>
+    $(document).ready(function(){
+        $('#tabel-data').DataTable({
+            "dom": 'Bfrtip'
+        });
+    });
+</script>
 
 <script>
     // On page load or when changing themes, best to add inline in `head` to avoid FOUC
@@ -235,18 +255,18 @@
 </script>
 <script>
     var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
-// Change the icons inside the button based on previous settings
-if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    themeToggleLightIcon.classList.remove('hidden');
-} else {
-    themeToggleDarkIcon.classList.remove('hidden');
-}
+    // Change the icons inside the button based on previous settings
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        themeToggleLightIcon.classList.remove('hidden');
+    } else {
+        themeToggleDarkIcon.classList.remove('hidden');
+    }
 
-var themeToggleBtn = document.getElementById('theme-toggle');
+    var themeToggleBtn = document.getElementById('theme-toggle');
 
-themeToggleBtn.addEventListener('click', function() {
+    themeToggleBtn.addEventListener('click', function() {
 
     // toggle icons inside button
     themeToggleDarkIcon.classList.toggle('hidden');
@@ -273,14 +293,8 @@ themeToggleBtn.addEventListener('click', function() {
         }
     }
     
-});
+    });
 </script>
-
- 
-    {{-- 
-  
-  
- --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
 </html>
